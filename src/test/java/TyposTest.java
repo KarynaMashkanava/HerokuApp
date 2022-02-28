@@ -2,6 +2,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.TyposPage;
+import resources.Constants;
 
 public class TyposTest extends BaseTest {
     private String expectedText = "Typos\n" +
@@ -10,10 +12,10 @@ public class TyposTest extends BaseTest {
 
     @Test
     public void typosTest() {
-        driver.get(Constants.TYPOS_URL);
-        WebElement elementText = driver.findElement(By.xpath("//div[@class='example']"));
-        Assert.assertEquals(elementText.getText(), expectedText, "Message is incorrect. Expected: \n" + expectedText
-                + "\nActual: \n" + elementText.getText());
+        TyposPage typosPage = new TyposPage(driver);
+        typosPage.openPage();
+        Assert.assertEquals(typosPage.getText(), expectedText, "Message is incorrect. Expected: \n" + expectedText
+                + "\nActual: \n" + typosPage.getText());
     }
 }
 
